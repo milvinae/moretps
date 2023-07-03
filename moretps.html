@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<body style="background-color:#29296e;">
+    <div id="emoji1" style="position:absolute; font-size:100px;">👈</div>
+    <div id="emoji2" style="position:absolute; font-size:100px;">👉</div>
+
+    <script>
+    let emoji1 = document.getElementById('emoji1');
+    let emoji2 = document.getElementById('emoji2');
+
+    // Start at different positions
+    emoji1.style.left = '0px';
+    emoji1.style.top = '0px';
+    emoji2.style.left = window.innerWidth - emoji2.offsetWidth + 'px';
+    emoji2.style.top = window.innerHeight - emoji2.offsetHeight + 'px';
+
+    let dx1 = 3, dy1 = 3, dx2 = -3, dy2 = -3;
+
+    function updatePosition(emoji, dx, dy) {
+        let x = emoji.offsetLeft + dx;
+        let y = emoji.offsetTop + dy;
+
+        if (x < 0 || x > window.innerWidth - emoji.offsetWidth) {
+            dx = -dx;
+        }
+
+        if (y < 0 || y > window.innerHeight - emoji.offsetHeight) {
+            dy = -dy;
+        }
+
+        emoji.style.left = (emoji.offsetLeft + dx) + 'px';
+        emoji.style.top = (emoji.offsetTop + dy) + 'px';
+
+        return [dx, dy];
+    }
+
+    function checkTouching() {
+        let rect1 = emoji1.getBoundingClientRect();
+        let rect2 = emoji2.getBoundingClientRect();
+
+        return !(rect1.right < rect2.left || 
+                rect1.left > rect2.right || 
+                rect1.bottom < rect2.top || 
+                rect1.top > rect2.bottom);
+    }
+
+    setInterval(function () {
+        [dx1, dy1] = updatePosition(emoji1, dx1, dy1);
+        [dx2, dy2] = updatePosition(emoji2, dx2, dy2);
+
+        if (checkTouching()) {
+            console.log('Emojis are touching!');
+        }
+    }, 20);
+    </script>
+</body>
+</html>
+
