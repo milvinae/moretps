@@ -44,6 +44,12 @@
         let rect1 = emoji1.getBoundingClientRect();
         let rect2 = emoji2.getBoundingClientRect();
 
+        // Shrink bounding boxes to approximate the tips of the fingers
+        rect1.left += 30;
+        rect1.right -= 30;
+        rect2.left += 30;
+        rect2.right -= 30;
+
         return !(rect1.right < rect2.left || 
                 rect1.left > rect2.right || 
                 rect1.bottom < rect2.top || 
