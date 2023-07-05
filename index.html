@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <style>
+        @keyframes growing {
+            0% { transform: scale(0.1); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+    </style>
+</head>
 <body style="background-color:#29296e;">
     <div id="emoji1" style="position:absolute; font-size:100px;">👉</div>
     <div id="emoji2" style="position:absolute; font-size:100px;">👈</div>
+    <div id="moreTPS" style="position:absolute; font-size:100px; font-family: sans-serif; font-weight: bold; color: white; opacity: 0;">MORE TPS</div>
 
     <script>
     let emoji1 = document.getElementById('emoji1');
     let emoji2 = document.getElementById('emoji2');
+    let moreTPS = document.getElementById('moreTPS');
 
     // Start at different positions
     emoji1.style.left = '0px';
@@ -75,9 +85,17 @@
                 emoji1.textContent = "👈";
                 emoji2.textContent = "👉";
             }
+
+            // Show "More TPS" message
+            moreTPS.style.left = ((emoji1.offsetLeft + emoji2.offsetLeft) / 2) + 'px';
+            moreTPS.style.top = ((emoji1.offsetTop + emoji2.offsetTop) / 2) + 'px';
+            moreTPS.style.animation = 'growing 1s linear';
+            setTimeout(() => {
+                moreTPS.style.animation = '';
+            }, 1000);
         }
     }, 20);
     </script>
 </body>
-</html>
+</html
 
