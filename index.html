@@ -3,12 +3,10 @@
 <body style="background-color:#29296e;">
     <div id="emoji1" style="position:absolute; font-size:100px;">👈</div>
     <div id="emoji2" style="position:absolute; font-size:100px;">👉</div>
-    <div id="message" style="display:none; position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); font-size:100px; color:white;">More TPS</div>
 
     <script>
     let emoji1 = document.getElementById('emoji1');
     let emoji2 = document.getElementById('emoji2');
-    let message = document.getElementById('message');
 
     // Start at different positions
     emoji1.style.left = '0px';
@@ -51,14 +49,11 @@
         [dx2, dy2] = updatePosition(emoji2, dx2, dy2);
 
         if (checkTouching()) {
-            message.style.display = 'block';
             // Switch directions
             dx1 = -dx1;
             dy1 = -dy1;
             dx2 = -dx2;
             dy2 = -dy2;
-        } else {
-            message.style.display = 'none';
         }
     }, 20);
     </script>
